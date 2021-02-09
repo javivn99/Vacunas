@@ -1,0 +1,6 @@
+5 si funciona.
+7 si ademas usas bootstrap y eso.
+9 si despliegas back y front en heroku.
+
+
+buscar en la pagina del estado los datos sobre las vacunas actuales para poner en DatosGlobales, sacar los 3 datos solo
