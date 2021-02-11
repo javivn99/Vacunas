@@ -13,17 +13,20 @@ function Datos_Globales(){
         await axios.get(baseUrl)
             .then(response => {
                 setData(response.data);
-/*
 
                 let d_entregadas = 0;
-                let d_administras = 0;
+                let d_administradas = 0;
                 let d_pers_pauta = 0;
 
-                response.data
-                d_entregadas = d_entregadas + vacunas.dosis_entregadas;
-                d_
-                personas_pauta_completa
-*/
+                response.data.forEach(vacuna => {
+                    d_entregadas = d_entregadas + vacunas.dosis_entregadas;
+                    d_administradas = d_administradas + vacunas.dosis_administradas;
+                    d_pers_pauta = d_pers_pauta + vacunas.personas_pauta_completa;
+                });
+                setDosisEntregadas(d_entregadas);
+                setDosisAdministradas(d_administradas);
+                setPersPautaComplet(d_pers_pauta);
+
                 //console.log(response.data);
             }).catch(error => {
                 console.log(error);

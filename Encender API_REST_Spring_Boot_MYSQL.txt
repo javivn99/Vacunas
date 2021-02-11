@@ -4,3 +4,5 @@
 
 
 buscar en la pagina del estado los datos sobre las vacunas actuales para poner en DatosGlobales, sacar los 3 datos solo
+
+Buscar funcionamiento de hooks en react para saber hacerlo
