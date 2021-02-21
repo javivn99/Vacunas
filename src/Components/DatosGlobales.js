@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 
 function Datos_Globales() {
@@ -29,7 +30,7 @@ function Datos_Globales() {
 
                     dosis_pfizer += ccaa.dosis_pfizer;//Sumo todas las de pfizer
                     dosis_moderna += ccaa.dosis_moderna; //Sumo todas las de moderna
-                   
+
                 });
                 setDosisEntregadas(dosisEntregadas);
                 setDosisAdministradas(dosisAdministradas);
@@ -37,7 +38,7 @@ function Datos_Globales() {
                 setDosis_pfizer(dosis_pfizer);
                 setDosis_moderna(dosis_moderna);
 
-                
+
             })
             .catch((error) => {
                 console.log(error);
@@ -49,6 +50,32 @@ function Datos_Globales() {
     }, []);
 
     return (
+        <div style={{textAlign: 'center'}}>
+            <div>
+                <h1>Datos globales agregados</h1>
+                <br></br>
+            </div>
+
+            <table className="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Dosis entregadas en CCAA</th>
+                        <th>Dosis administradas</th>
+                        <th>Nº Personas con pauta completa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <td>{dosisEntregadas}</td>
+                    <td>{dosisAdministradas}</td>
+                    <td>{pers_pauta_complet}</td>
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+        /* FUNCIONA
         <div>
             <header>
                 <h1>Datos globales agregados</h1>
@@ -68,6 +95,7 @@ function Datos_Globales() {
                 </div>
             </div>
         </div>
+        */
     );
 }
 
