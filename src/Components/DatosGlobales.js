@@ -1,57 +1,71 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 
-function Datos_Globales(){
-    const baseUrl = "http://localhost:4004/vacunas/";
+function Datos_Globales() {
+    const baseUrl = "http://localhost:4004/vacunas";
     const [data, setData] = useState([]);
-    const [dosis_entregadas, setDosisEntregadas] = useState(0); //BUSCAR COMO USAR HOOKS CON REACT
-    const [dosis_administradas, setDosisAdministradas] = useState(0);
-    const [personas_pauta_completa, setPersonasPautaCompleta] = useState(0);
 
-    const peticionGet = async () => { //Con esto guardo un array con todos los datos de la bdd.
-        await axios.get(baseUrl)
-            .then(response => {
+    let [dosisEntregadas, setDosisEntregadas] = useState(0);
+    let [dosisAdministradas, setDosisAdministradas] = useState(0);
+    let [pers_pauta_complet, setPers_pauta_complet] = useState(0);
+    let [dosis_pfizer, setDosis_pfizer] = useState(0);
+    let [dosis_moderna, setDosis_moderna] = useState(0);
+
+    const peticionGet = async () => {
+        await axios
+            .get(baseUrl)
+            .then((response) => {
                 setData(response.data);
+                // console.log(response.data);
+                response.data.forEach(function (ccaa) {
+                    //Dosis entregadas
+                    dosisEntregadas += ccaa.dosis_pfizer + ccaa.dosis_moderna;
 
-                let d_entregadas = 0;
-                let d_administradas = 0;
-                let d_pers_pauta = 0;
+                    //Dosis Administradas
+                    dosisAdministradas += ccaa.dosis_administradas;
 
-                response.data.forEach(vacuna => {
-                    d_entregadas = d_entregadas + vacunas.dosis_entregadas;
-                    d_administradas = d_administradas + vacunas.dosis_administradas;
-                    d_pers_pauta = d_pers_pauta + vacunas.personas_pauta_completa;
+                    //Nº Pers Pauta completa total
+                    pers_pauta_complet += ccaa.pers_pauta_complet;
+
+                    dosis_pfizer += ccaa.dosis_pfizer;//Sumo todas las de pfizer
+                    dosis_moderna += ccaa.dosis_moderna; //Sumo todas las de moderna
+                   
                 });
-                setDosisEntregadas(d_entregadas);
-                setDosisAdministradas(d_administradas);
-                setPersPautaComplet(d_pers_pauta);
+                setDosisEntregadas(dosisEntregadas);
+                setDosisAdministradas(dosisAdministradas);
+                setPers_pauta_complet(pers_pauta_complet);
+                setDosis_pfizer(dosis_pfizer);
+                setDosis_moderna(dosis_moderna);
 
-                //console.log(response.data);
-            }).catch(error => {
-                console.log(error);
+                
             })
-    }//peticionGet
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
-    //Esta linea indica que la primera funcion en ejecutarse sea el get
     useEffect(() => {
         peticionGet();
-    }, [])
+    }, []);
 
     return (
         <div>
-            <h1>Datos globales</h1>
+            <header>
+                <h1>Datos globales agregados</h1>
+            </header>
             <div>
-                <h3>Dosis entregadas en CC.AA</h3>
-                <p></p>
-            </div>
-            <div>
-                <h3>Dosis administradas</h3>
-
-            </div>
-            <div>
-                <h3>Nº Personas con pauta completa</h3>
-
+                <div>
+                    <h4>Dosis entregadas en CCAA</h4>
+                    <span>{dosisEntregadas}</span>
+                </div>
+                <div>
+                    <h4>Dosis administradas</h4>
+                    <span>{dosisAdministradas}</span>
+                </div>
+                <div>
+                    <h4>Nº Personas con pauta completa</h4>
+                    <span>{pers_pauta_complet}</span>
+                </div>
             </div>
         </div>
     );

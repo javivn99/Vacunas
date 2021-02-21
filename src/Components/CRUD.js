@@ -18,6 +18,7 @@ function CRUD() {
       nombre: '',
       dosis_pfizer: '',
       dosis_moderna: '',
+      dosis_administradas: '',
       pers_pauta_complet: ''
     });
   
@@ -60,6 +61,7 @@ function CRUD() {
         nombre:frameworkSeleccionado.nombre,
         dosis_pfizer:frameworkSeleccionado.dosis_pfizer,
         dosis_moderna:frameworkSeleccionado.dosis_moderna,
+        dosis_administradas:frameworkSeleccionado.dosis_administradas,
         pers_pauta_complet:frameworkSeleccionado.pers_pauta_complet
       };
       
@@ -84,6 +86,7 @@ function CRUD() {
         nombre:frameworkSeleccionado.nombre,
         dosis_pfizer:frameworkSeleccionado.dosis_pfizer,
         dosis_moderna:frameworkSeleccionado.dosis_moderna,
+        dosis_administradas:frameworkSeleccionado.dosis_administradas,
         pers_pauta_complet:frameworkSeleccionado.pers_pauta_complet
       };
       await axios.put(baseUrl+"modificar/"+frameworkSeleccionado.id,vacuna)
@@ -145,6 +148,7 @@ function CRUD() {
             <th>Comunidad Autonoma</th>
             <th>Dosis Pfizer</th>
             <th>Dosis Moderna</th>
+            <th>Dosis Administradas</th>
             <th>Personas Pauta Completa</th>
           </tr>
         </thead>
@@ -167,6 +171,7 @@ function CRUD() {
               <td>{framework.nombre}</td>
               <td>{framework.dosis_pfizer}</td>
               <td>{framework.dosis_moderna}</td>
+              <td>{framework.dosis_administradas}</td>
               <td>{framework.pers_pauta_complet}</td>
               
             <td>
@@ -198,6 +203,10 @@ function CRUD() {
             <br />
             <input type="text" className="form-control" name="dosis_moderna" onChange={handleChange}/>
             <br />
+            <label>Dosis Administradas: </label>
+            <br />
+            <input type="text" className="form-control" name="dosis_administradas" onChange={handleChange}/>
+            <br />
             <label>Personas Pauta Completa: </label>
             <br />
             <input type="text" className="form-control" name="pers_pauta_complet" onChange={handleChange}/>
@@ -227,6 +236,10 @@ function CRUD() {
             <label>Dosis Moderna: </label>
             <br />
             <input type="text" className="form-control" name="dosis_moderna" onChange={handleChange}/>
+            <br />
+            <label>Dosis Administradas: </label>
+            <br />
+            <input type="text" className="form-control" name="dosis_administradas" onChange={handleChange}/>
             <br />
             <label>Personas Pauta Completa: </label>
             <br />
