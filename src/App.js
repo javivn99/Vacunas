@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import * as ReactBootStrap from "react-bootstrap";
 import DankMemes from "./Components/DankMemes";
 import CRUD from "./Components/CRUD";
 import Home from "./Components/Home";
@@ -11,7 +10,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect
 } from "react-router-dom";
 

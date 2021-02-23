@@ -1,0 +1,33 @@
+.dosis_global{
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.dosis_glob_1{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.porcentajes{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.nombrePfizer{
+    color: rgb(0, 119, 255);
+    font-weight: bold;
+}
+
+.nombreModerna{
+    color: rgb(4, 184, 4);
+    font-weight: bold;
+}
+
+.lasGrises{
+    color: grey;
+}
+
+.laUltima{
+    color: grey;
+    background-color: rgb(255, 185, 255);
+}
